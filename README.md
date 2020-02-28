@@ -39,7 +39,14 @@ Additionaly, the default fallback profile is also `dev` profile so you can easil
 ```
 mvn spring-boot:run
 ```
-
+### Run Using Docker
+To run with docker you can simply execute `./build.sh` file which contains the command below:
+```
+mvn clean install
+docker build --build-arg USER=webservice -t boilerplates/spring-boot-webservice-0.0.1 .
+docker run -p 8080:8000 --name spring-boot-webservice -e JAVA_OPTS=-Dserver.port=8000 boilerplates/spring-boot-webservice-0.0.1
+```
+If you would like to deploy docker hub, do not forget to change `boilerplates/` to your docker user.
 ### Automated Tests 
 To run automated tests for the application you can simply execute the command below:
 ```
