@@ -48,23 +48,21 @@ class UserItemServiceIntegrationTest {
 
     @Test
     void whenNonExistingUsernameGiven_ThrowsException() {
-        UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class, () -> {
-            userItemService.getUserItems("unknown");
-        });
+        UsernameNotFoundException exception = assertThrows(UsernameNotFoundException.class, () -> userItemService.getUserItems("unknown"));
 
         assertEquals(exception.getUsername(), "unknown");
     }
 
     @Test
     void whenExistingUsernameGiven_UserItemShouldReturn() {
-        List<Item> userItems = userItemService.getUserItems("cecilia");
+        List<Item> userItems = userItemService.getUserItems("bob");
         assertEquals(2, userItems.size());
     }
 
 
     @Test
     void whenUsernameCeciliaGiven_UserItemsShouldReturn() {
-        List<Item> userItems = userItemService.getUserItems("cecilia");
+        List<Item> userItems = userItemService.getUserItems("bob");
 
         Item item1 = userItems.get(0);
 
@@ -88,7 +86,7 @@ class UserItemServiceIntegrationTest {
 
     @Test
     void whenUsernameCeciliaGiven_UserItemPropertiesShouldReturn() {
-        List<Item> userItems = userItemService.getUserItems("cecilia");
+        List<Item> userItems = userItemService.getUserItems("bob");
 
         Item item1 = userItems.get(0);
         Item item2 = userItems.get(1);
@@ -119,7 +117,7 @@ class UserItemServiceIntegrationTest {
 
     @Test
     void whenUsernameAnaGiven_UserItemsShouldReturn() {
-        List<Item> userItems = userItemService.getUserItems("ana");
+        List<Item> userItems = userItemService.getUserItems("john");
 
         assertEquals(1, userItems.size());
 
@@ -136,7 +134,7 @@ class UserItemServiceIntegrationTest {
 
     @Test
     void whenUsernameAnaGiven_UserItemPropertiesShouldReturnEmpty() {
-        List<Item> userItems = userItemService.getUserItems("ana");
+        List<Item> userItems = userItemService.getUserItems("john");
 
         assertEquals(1, userItems.size());
 

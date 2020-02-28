@@ -9,7 +9,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Unit tests for our {@link UserWebserviceController}
@@ -29,11 +30,11 @@ class UserWebserviceUnitTest {
 
     @Test
     void whenUsernameGiven_userItemsRequestShouldWork() throws Exception {
-        String username = "ana";
-        mockMvc.perform(get("/services/user/"+username))
+        String username = "test";
+        mockMvc.perform(get("/services/user/" + username))
                 .andExpect(status().isOk())
                 .andExpect(content()
-                        .json("{\"username\":\"ana\",\"item\":[{\"name\":\"item1\",\"game\":\"game1\",\"expirationDate\":\"2012-08-12\",\"quantity\":3,\"property\":[{\"name\":\"name1\",\"value\":\"value1\"}]}]}"));
+                        .json("{\"username\":\"test\",\"item\":[{\"name\":\"item1\",\"game\":\"game1\",\"expirationDate\":\"2012-08-12\",\"quantity\":3,\"property\":[{\"name\":\"name1\",\"value\":\"value1\"}]}]}"));
     }
 
 }
