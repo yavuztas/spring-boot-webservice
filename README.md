@@ -78,8 +78,8 @@ Sample response:
 }
 ```
 ### Design Notes
-1. `getUserItems` query in `UserRepository` implemented by join fetch for brevity. Ideally in production environment with large data we should improve 
-performance by using Hibernate `@BatchSize` for `@OneToMany` associations and implementing pagination.
+1. `getUserItems` query in `UserRepository` implemented by join fetch for brevity. Ideally in production environment with large data, we should implement pagination 
+to improve performance by using Hibernate `@BatchSize` for `@OneToMany` associations.
 
 2. Under the package `dev.yavuztas.boilerplate.springbootwebservice.view` we create view models in order to expose our data in a controlled way. Besides, we aim
 to keep our domain models clean. Certainly, there are alternatives like Jackson `@JsonView` however, we prefer not to spread our conversion logic over 
@@ -88,9 +88,9 @@ on domain models.
 3. Since we customized error handling as a sample in `ApiErrorHandler` we have a chance to guide our consumers by more meaningful error messages 
 which can be important in API development.
 
-4. Even though more tests can be implemented to increase test coverage, we implement integration tests for only the `UserItemService` 
-which was considered the most critical part for this project.
+4. Even though more tests can be implemented to increase test coverage, we implement only integration tests for `UserItemService` 
+which was considered the most critical part for this application.
 
 ### Notes About Security
-This web service designed without security. Ideally in production, accessing end points should be restricted in network level (like: DMZ, firewalls, ip restriction, etc.) 
-to only authorized requests.
+This web service designed without security. Ideally in production, accessing end points should be restricted in network level (like: DMZ, firewall configurations, ip restriction, etc.) 
+unless there is a requirement to make them public.
