@@ -1,9 +1,12 @@
 package dev.yavuztas.boilerplate.springbootwebservice;
 
+import dev.yavuztas.boilerplate.springbootwebservice.config.SwaggerConfig;
 import dev.yavuztas.boilerplate.springbootwebservice.controller.UserWebserviceController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,7 +25,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @ActiveProfiles("dev")
 @Import(UserWebserviceUnitTestConfig.class)
-@WebMvcTest(controllers = UserWebserviceController.class)
+@WebMvcTest(controllers = UserWebserviceController.class, excludeFilters =
+@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SwaggerConfig.class))
 class UserWebserviceUnitTest {
 
     @Autowired
@@ -31,7 +35,7 @@ class UserWebserviceUnitTest {
     @Test
     void whenUsernameGiven_userItemsRequestShouldWork() throws Exception {
         String username = "test";
-        mockMvc.perform(get("/services/user/" + username))
+        mockMvc.perform(get("/v/1.0/user/" + username))
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .json("{\"username\":\"test\",\"item\":[{\"name\":\"item1\",\"game\":\"game1\",\"expirationDate\":\"2012-08-12\",\"quantity\":3,\"property\":[{\"name\":\"name1\",\"value\":\"value1\"}]}]}"));
