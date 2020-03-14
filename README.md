@@ -96,6 +96,10 @@ which can be important in API development.
 4. Even though more tests can be implemented to increase test coverage, we implement only integration tests for `UserItemService` 
 which was considered the most critical part for this application.
 
+5. In order to customize Swagger home page, no matter how we handle on our side we cannot change `swagger-ui.html` as for now. This is because 
+it's hardcoded in [springfox.js](https://github.com/springfox/springfox/blob/34246cf6925ac7ea985969de8a2ced2dab3982ec/springfox-swagger-ui/src/web/js/springfox.js#L135).
+We should consider to fork repository and fix the hardcoded part. Also, forking would be the best choice if we need to customize style, CSS and HTML structure. 
+
 ### Notes About Security
 This web service designed without security. Ideally in production, accessing end points should be restricted in network level (like: DMZ, firewall configurations, ip restriction, etc.) 
 unless there is a requirement to make them public.
