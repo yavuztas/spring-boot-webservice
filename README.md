@@ -5,9 +5,9 @@ After you installed `Java 8+` and `Maven 3+`, the fastest way to run **Spring Bo
 ```
 mvn spring-boot:run
 ```
-After successfully launched, you can see the sample response by requesting the url below:
+After successfully launched, you can see the API endpoints by requesting the url below:
 ```
-http://localhost:8080/services/user/john
+http://localhost:8080/api
 ```
 If you need to change the default port other than **8080**, you can start server with additional `server.port=8000`:
 ```
@@ -55,9 +55,9 @@ mvn test
 ```
 
 ### Service Endpoints
-User items end point:
+User items endpoint:
 ```
-http://localhost:8080/services/user/{username}
+http://localhost:8080/api/v/1.0/user/{username}
 ```
 Http Method: `GET`
 <br>
@@ -77,6 +77,10 @@ Sample response:
     }]
    }]
 }
+```
+Alternatively, you can access the API documentation page which was set up by [Swagger 2](https://swagger.io):
+```
+http://localhost:8080/api
 ```
 ### Design Notes
 1. `getUserItems` query in `UserRepository` implemented by join fetch for brevity. Ideally in production environment with large data, we should implement pagination 
