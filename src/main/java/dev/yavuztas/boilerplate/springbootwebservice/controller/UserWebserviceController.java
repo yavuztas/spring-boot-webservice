@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @Api(tags = "user", description = "All endpoints about User")
-@RequestMapping("/v/1.0")
+@RequestMapping("/api/1.0")
 @RestController
 public class UserWebserviceController {
 
